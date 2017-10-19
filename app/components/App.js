@@ -1,9 +1,11 @@
 var React = require('react');
 
+// Written in old way before ES6
 // function Welcome(props) {
 //   return <h1>Hello, {props.name}.</h1>;
 // }
 
+// Written in most recent way ES6
 class Welcome extends React.Component{
   render() {
     return <h1>Hello, {this.props.name}.</h1>;
@@ -19,6 +21,7 @@ class Welcome extends React.Component{
 //   );
 // }
 
+// Practice using lifecycle hooks and states
 class Clock extends React.Component{
   constructor(props) {
     super(props);
@@ -52,7 +55,7 @@ class Clock extends React.Component{
   }
 }
 
-
+// Practice using props
 // function App(props) {
 //   return (
 //     <div>
@@ -75,6 +78,7 @@ class App extends React.Component{
   }
 }
 
+// Practice handling events with more states
 class Toggle extends React.Component{
   constructor(props){
     super(props);
@@ -98,7 +102,31 @@ class Toggle extends React.Component{
 
 }
 
+// Practice with conditional rendering
+class GuestGreeting extends React.Component{
+  render() {
+    return <h1>Please sign up!</h1>
+  }
+}
+
+class UserGreeting extends React.Component{
+  render() {
+    return <h1>Welcome back!</h1>
+  }
+}
+
+class Greeting extends React.Component{
+  render() {
+    const isLoggedIn = this.props.isLoggedIn;
+    if (isLoggedIn) {
+      return <UserGreeting />
+    }
+    return <GuestGreeting />
+  }
+}
+
 module.exports = {
   Clock: Clock,
-  Toggle: Toggle
+  Toggle: Toggle,
+  Greeting: Greeting
 };
