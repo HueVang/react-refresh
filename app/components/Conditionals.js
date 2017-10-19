@@ -3,6 +3,7 @@
 var React = require('react');
 var {Greeting} = require('./App');
 
+// Practicing conditionals if statements
 class LoginButton extends React.Component{
   render() {
     return (
@@ -58,4 +59,24 @@ class LoginControl extends React.Component{
   }
 }
 
-module.exports = LoginControl;
+// Practicing conditionals 'inline if with logical "&&" operator'
+class Mailbox extends React.Component{
+  render() {
+    const unreadMessages = this.props.unreadMessages;
+    return (
+      <div>
+        <h1>Hello</h1>
+        {unreadMessages.length > 0 &&
+          <h2>
+            You have {unreadMessages.length} unread messages.
+          </h2>
+        }
+      </div>
+    )
+  }
+}
+
+module.exports = {
+  LoginControl: LoginControl,
+  Mailbox: Mailbox
+};
