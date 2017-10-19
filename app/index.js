@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Welcome = require('./components/App');
+var {Clock, Toggle} = require('./components/App');
 
 ReactDOM.render(
-  <Welcome />,
+  <Toggle />,
   document.getElementById('app')
 );
 
