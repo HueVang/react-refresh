@@ -99,9 +99,17 @@ class Page extends React.Component{
   }
 
   handleToggleClick() {
+    // This is the ES6 version
     this.setState(prevState => ({
       showWarning: !prevState.showWarning
     }));
+
+    // This is the version before ES6
+    // this.setState(function(prevState){
+    //   return {
+    //     showWarning: !prevState.showWarning
+    //   }
+    // });
   }
 
   render() {
