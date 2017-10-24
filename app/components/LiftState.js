@@ -15,11 +15,38 @@ class BoilingVerdict extends React.Component {
 }
 
 class Calculator extends React.Component {
+  constructor(props){
+    super(props);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.handleCelciusChange = this.handleCelciusChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
+
+  handleCelciusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
   render() {
+    const scale = this.state.scale;
+    const temperature = this.state.temperature;
+    const celcius = scale === 'f' ? tryConvert(temperature, toCelcius) : temperature;
+    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
     return (
       <div>
-        <TemperatureInput scale="c" />
-        <TemperatureInput scale="f" />
+        <TemperatureInput
+        scale="c"
+        temperature={celcius}
+        onTemperatureChange={this.handleCelciusChange} />
+        <TemperatureInput
+        scale="f"
+        temperature={fahrenheit}
+        onTemperatureChange={this.handleFahrenheitChange} />
+        <BoilingVerdict
+        celcius={parseFloat(celcius)} />
       </div>
     );
   }
@@ -38,11 +65,15 @@ class TemperatureInput extends React.Component {
   }
 
   handleChange(e) {
-    this.setState({temperature: e.target.value});
+    // before lifting state
+    // this.setState({temperature: e.target.value});
+    this.props.onTemperatureChange(e.target.value);
   }
 
   render() {
-    const temperature = this.state.temperature;
+    // before lifting state
+    // const temperature = this.state.temperature;
+    const temperature = this.props.temperature;
     const scale = this.props.scale;
     return (
       <fieldset>
